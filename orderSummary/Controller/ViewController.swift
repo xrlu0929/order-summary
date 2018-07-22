@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController {
     let baseURL = "https://shopicruit.myshopify.com/admin/orders.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
@@ -15,7 +16,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getOrderData(url: baseURL)
         // Do any additional setup after loading the view.
     }
 
@@ -27,9 +28,9 @@ class ViewController: UIViewController {
     //MARK: - Networking
     //    /***************************************************************/
     
-        func getOrderData(url: String, parameters: [String : String]) {
+        func getOrderData(url: String) {
     
-            Alamofire.request(url, method: .get, parameters: parameters)
+            Alamofire.request(url, method: .get)
                 .responseJSON { response in
                     if response.result.isSuccess {
     

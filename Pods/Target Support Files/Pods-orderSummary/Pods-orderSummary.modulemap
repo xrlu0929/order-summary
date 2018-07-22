@@ -1,0 +1,6 @@
+framework module Pods_orderSummary {
+  umbrella header "Pods-orderSummary-umbrella.h"
+
+  export *
+  module * { export * }
+}

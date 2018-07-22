@@ -12,6 +12,7 @@ class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("loaded second view of tab view")
         // Do any additional setup after loading the view, typically from a nib.
     }
 
