@@ -9,17 +9,29 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Foundation
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     let baseURL = "https://shopicruit.myshopify.com/admin/orders.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
     
-    let orderDataModel = OrderDataModel()
+    var orderDataModel = OrderDataModel()
+    
+    
+    @IBOutlet weak var provinceTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loaded first view of tabview")
+        
         getOrderData(url: baseURL)
+        
         // Do any additional setup after loading the view, typically from a nib.
+        // register Province Xib
+        
+        provinceTableView.delegate = self
+        provinceTableView.dataSource = self
+        provinceTableView.register(UINib(nibName: "ProvinceCell", bundle: nil), forCellReuseIdentifier:"provinceCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,32 +43,73 @@ class FirstViewController: UIViewController {
     //    /***************************************************************/
     
     func getOrderData(url: String) {
+        var orderJSON : JSON = JSON.null
         
         Alamofire.request(url, method: .get)
-            .responseJSON { response in
+            .responseJSON {
+                response in
                 if response.result.isSuccess {
                     
-                    print("Sucess! Got the order data")
-                    let orderJSON : JSON = JSON(response.result.value!)
+                    print("Success! Got the order data")
+                    orderJSON = JSON(response.result.value!)
                     
-                    print(orderJSON)
+                    
+                    //print(orderJSON)
                     self.parseOrderData(json: orderJSON)
                     
                 } else {
                     print("Error: \(String(describing: response.result.error))")
-                    //self.bitcoinPriceLabel.text = "Connection Issues"
+                    
                 }
         }
-        
+        //print(parsedData)
+        //return parsedData
     }
     
     func parseOrderData(json: JSON) {
         let orderData = json["orders"]
+        //var province : [String] = []
         // get orderData length
-        let length = orderData.count
+        let length :Int = orderData.count
         print("the length of Order is: ", "\(length)")
+        
+        for entry in 0...(length-1) {
+            /**
+             * ship to
+             **/
+            if (orderData[entry]["shipping_address"]["province"] != JSON.null) {
+                orderDataModel.province.append(orderData[entry]["shipping_address"]["province"].string!)
+                //print(orderDataModel.province[entry])
+            } else {
+                orderDataModel.province.append("N/A")
+                //print(orderDataModel.province[entry])
+                
+            }
+            
+        }
+        //print(orderDataModel.province)
+        
     }
-
+    func updateUITEST() {
+        
+    }
+    
+    // cellForRowAt
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "provinceCell", for: indexPath) as! ProvinceCell
+        
+        let provinceTEST : [String] = ["New York", "Alaska", "Ma"]
+        cell.provinceLabel.text = provinceTEST[indexPath.row]
+        
+        print("finished setting cell")
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("cell row number returned")
+        return 3
+    }
+    
 
 }
 
