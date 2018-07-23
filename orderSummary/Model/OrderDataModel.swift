@@ -57,7 +57,7 @@ class OrderDataModel {
                 result.append(input[e])
             }
         }
-        
+        result.sort()
         return result
 
     }

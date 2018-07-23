@@ -40,6 +40,9 @@
                     </label>
                 </subviews>
             </tableViewCellContentView>
+            <accessibility key="accessibilityConfiguration">
+                <accessibilityTraits key="traits" notEnabled="YES"/>
+            </accessibility>
             <connections>
                 <outlet property="orderNumberLabel" destination="NBz-mk-rlm" id="lbY-js-uve"/>
                 <outlet property="provinceLabel" destination="ys1-Ts-AJw" id="KOh-4S-rl1"/>
