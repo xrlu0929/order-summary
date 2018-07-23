@@ -77,17 +77,19 @@ class SecondViewController: UIViewController {
         }
         
         print(orderDataModel.createdYear)
+        orderDataModel.orderAmount16 = orderDataModel.processYearData(input: orderDataModel.createdYear)[0]
         
-        processYearData(input: orderDataModel.createdYear)
-    }
-    
-    func processYearData(input:[String]) {
+        orderDataModel.orderAmount17 = orderDataModel.processYearData(input: orderDataModel.createdYear)[1]
+            
         updateYearUI()
     }
     
+    
+    
     func updateYearUI() {
-        orderNum17.text = String(3)
-        orderNum16.text = String(47)
+        
+        orderNum17.text = String(orderDataModel.orderAmount17)
+        orderNum16.text = String(orderDataModel.orderAmount16)
     }
     
     
