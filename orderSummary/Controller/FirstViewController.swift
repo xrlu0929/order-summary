@@ -88,6 +88,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
         }
         orderDataModel.province_ready = orderDataModel.provinceUIUpdate(input: orderDataModel.province)
+        orderDataModel.provinceOrderDic = orderDataModel.processProvince(input: orderDataModel.province)
+        orderDataModel.orderByProvince = orderDataModel.provinceOrderUIUpdate(input: orderDataModel.province_ready, dic: orderDataModel.provinceOrderDic as! Dictionary<String, Int>)
         provinceTableView.reloadData()
         
     }
@@ -103,7 +105,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        cell.orderNumberLabel.text = "\(orderTEST[indexPath.row])"
 
         cell.provinceLabel.text = orderDataModel.province_ready[indexPath.row]
-        //cell.orderNumberLabel.text = "\(orderDataModel.orderByProvince[indexPath.row])"
+        cell.orderNumberLabel.text = "\(orderDataModel.orderByProvince[indexPath.row])"
         
         print("finished setting cell")
         return cell

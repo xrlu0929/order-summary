@@ -21,7 +21,7 @@ class OrderDataModel {
     var orderAmount17 = 0
     var orderAmount16 = 0
     
-    func processProvince (input : [String]) -> (Dictionary<String, Any>) {
+    func processProvince (input : [String]) -> (Dictionary<String, Int>) {
         let length = input.count
         
         var provinceDict: [String: Int] = [:]
@@ -44,6 +44,7 @@ class OrderDataModel {
         return provinceDict
     }
     
+    
     func provinceUIUpdate (input : [String]) -> [String] {
         let length = input.count
         
@@ -58,11 +59,25 @@ class OrderDataModel {
         }
         
         return result
-        
-        
-        
-        
+
     }
+    
+    func provinceOrderUIUpdate (input : [String], dic: Dictionary<String, Int>) -> [Int] {
+        var result : [Int] = []
+        
+        let length = dic.count
+        
+        for e in 0...(length-1) {
+            if dic[input[e]] != nil {
+                result.append(dic[input[e]]!)
+            } else {
+                result.append(0)
+            }
+        }
+        
+        return result
+    }
+    
     
     func processYearData(input:[String]) -> [Int]{
         let length = input.count
