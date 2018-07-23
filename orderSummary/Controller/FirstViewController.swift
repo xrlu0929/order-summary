@@ -17,6 +17,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var orderDataModel = OrderDataModel()
     
+    @IBOutlet weak var test: UILabel!
     
     @IBOutlet weak var provinceTableView: UITableView!
     
@@ -62,8 +63,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     
                 }
         }
-        //print(parsedData)
-        //return parsedData
+        
     }
     
     func parseOrderData(json: JSON) {
@@ -87,10 +87,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
         }
-        //print(orderDataModel.province)
-        
-    }
-    func updateUITEST() {
+        orderDataModel.province_ready = orderDataModel.provinceUIUpdate(input: orderDataModel.province)
+        provinceTableView.reloadData()
         
     }
     
@@ -98,8 +96,14 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "provinceCell", for: indexPath) as! ProvinceCell
         
-        let provinceTEST : [String] = ["New York", "Alaska", "Ma"]
-        cell.provinceLabel.text = provinceTEST[indexPath.row]
+//        let provinceTEST : [String] = ["New York", "Alaska", "Ma"]
+//        let orderTEST = [22, 33, 14]
+//
+//        cell.provinceLabel.text = provinceTEST[indexPath.row]
+//        cell.orderNumberLabel.text = "\(orderTEST[indexPath.row])"
+
+        cell.provinceLabel.text = orderDataModel.province_ready[indexPath.row]
+        //cell.orderNumberLabel.text = "\(orderDataModel.orderByProvince[indexPath.row])"
         
         print("finished setting cell")
         return cell
@@ -107,7 +111,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("cell row number returned")
-        return 3
+        print(orderDataModel.province_ready.count)
+        return orderDataModel.province_ready.count
     }
     
 

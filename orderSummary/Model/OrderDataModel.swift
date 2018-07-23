@@ -10,7 +10,13 @@ import UIKit
 
 class OrderDataModel {
     var createdYear : [String] = []
+    
     var province: [String] = []
+    var province_ready: [String] = []
+    
+    var orderByProvince: [Int] = []
+    var provinceOrderDic:Dictionary<String, Any> = [:]
+    
     
     var orderAmount17 = 0
     var orderAmount16 = 0
@@ -20,15 +26,42 @@ class OrderDataModel {
         
         var provinceDict: [String: Int] = [:]
         
+        
         for e in 0...(length-1) {
             if provinceDict[input[e]] != nil {
                 provinceDict[input[e]] = provinceDict[input[e]]! + 1
+                
             } else {
                 provinceDict[input[e]] = 1
+                
+            }
+            
+            province.append(input[e])
+        }
+        
+        provinceOrderDic = provinceDict
+        
+        return provinceDict
+    }
+    
+    func provinceUIUpdate (input : [String]) -> [String] {
+        let length = input.count
+        
+        var result : [String] = []
+        
+        for e in 0...(length-1) {
+            if result.contains(input[e]) {
+                continue
+            } else {
+                result.append(input[e])
             }
         }
         
-        return provinceDict
+        return result
+        
+        
+        
+        
     }
     
     func processYearData(input:[String]) -> [Int]{

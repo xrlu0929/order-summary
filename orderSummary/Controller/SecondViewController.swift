@@ -76,7 +76,7 @@ class SecondViewController: UIViewController {
             
         }
         
-        print(orderDataModel.createdYear)
+        //print(orderDataModel.createdYear)
         orderDataModel.orderAmount16 = orderDataModel.processYearData(input: orderDataModel.createdYear)[0]
         
         orderDataModel.orderAmount17 = orderDataModel.processYearData(input: orderDataModel.createdYear)[1]
