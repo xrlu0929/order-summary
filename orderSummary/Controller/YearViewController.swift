@@ -64,11 +64,16 @@ class YearViewController: UIViewController, UITableViewDelegate, UITableViewData
         // get orderData length
         let length :Int = orderData.count
         var count2017 = 0
+        var count2016 = 0
         print("*****")
         
         var first_name_2017 : [String] = []
         var last_name_2017 : [String] = []
         var orderID_2017:[Any] = []
+        
+        var first_name_2016 : [String] = []
+        var last_name_2016 : [String] = []
+        var orderID_2016:[Any] = []
         
         for entry in 0...(length-1) {
             /**
@@ -111,17 +116,48 @@ class YearViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 
+            } else if (year_ready == "2016") {
+                count2016 = count2016 + 1
+                
+                /** update order id
+                 **/
+                if(orderIDJSON != JSON.null)
+                {
+                    orderID_2016.append(orderIDJSON)
+                } else {
+                    orderID_2016.append("n/a")
+                }
+                
+                /** update customer name
+                 **/
+                if(customerJSON != JSON.null) {
+                    first_name_2016.append(customerJSON["first_name"].string!)
+                    last_name_2016.append(customerJSON["last_name"].string!)
+                } else {
+                    first_name_2016.append("n/a")
+                    last_name_2016.append("n/a")
+                }
             }
             
         }
         
+        if (yearTextPassed == "2017") {
+            orderYearlyDataModel.orderAmount = count2017
+            orderYearTabelView.reloadData()
+            orderYearlyDataModel.customerFirstName = first_name_2017
+            orderYearlyDataModel.customerLastName = last_name_2017
+            
+            orderYearlyDataModel.orderID = orderID_2017
+        } else if (yearTextPassed == "2016") {
+            orderYearlyDataModel.orderAmount = count2016
+            orderYearTabelView.reloadData()
+            orderYearlyDataModel.customerFirstName = first_name_2016
+            orderYearlyDataModel.customerLastName = last_name_2016
+            
+            orderYearlyDataModel.orderID = orderID_2016
+        }
         
-        orderYearlyDataModel.orderAmount = count2017
-        orderYearTabelView.reloadData()
-        orderYearlyDataModel.customerFirstName = first_name_2017
-        orderYearlyDataModel.customerLastName = last_name_2017
         
-        orderYearlyDataModel.orderID = orderID_2017
         
         orderYearTabelView.reloadData()
     
@@ -132,6 +168,7 @@ class YearViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "orderDetailCell", for: indexPath)
 //        let orderID = ["123123123", "234234234", "345345345"]
 //        let customer = ["Ann", "Bella", "Carry"]
+        
         // cusomer Name
         cell.detailTextLabel?.text = orderYearlyDataModel.customerFirstName[indexPath.row] + " " + orderYearlyDataModel.customerLastName[indexPath.row]
         // order ID
