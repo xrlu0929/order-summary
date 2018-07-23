@@ -17,6 +17,8 @@
 		F7A8B3562104ECA1008C019A /* OrderDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A8B3552104ECA1008C019A /* OrderDataModel.swift */; };
 		F7A8B35B21053BFE008C019A /* ProvinceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A8B35921053BFE008C019A /* ProvinceCell.swift */; };
 		F7A8B35C21053BFE008C019A /* ProvinceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A8B35A21053BFE008C019A /* ProvinceCell.xib */; };
+		F7D565D521058AB80081E50D /* OrderDataByYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D565D421058AB80081E50D /* OrderDataByYear.swift */; };
+		F7D565D7210593400081E50D /* YearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D565D6210593400081E50D /* YearViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		F7A8B3552104ECA1008C019A /* OrderDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDataModel.swift; sourceTree = "<group>"; };
 		F7A8B35921053BFE008C019A /* ProvinceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceCell.swift; sourceTree = "<group>"; };
 		F7A8B35A21053BFE008C019A /* ProvinceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProvinceCell.xib; sourceTree = "<group>"; };
+		F7D565D421058AB80081E50D /* OrderDataByYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDataByYear.swift; sourceTree = "<group>"; };
+		F7D565D6210593400081E50D /* YearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 			children = (
 				F7A8B33D21043AF3008C019A /* FirstViewController.swift */,
 				F7A8B33F21043AF3008C019A /* SecondViewController.swift */,
+				F7D565D6210593400081E50D /* YearViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -109,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				F7A8B3552104ECA1008C019A /* OrderDataModel.swift */,
+				F7D565D421058AB80081E50D /* OrderDataByYear.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -253,6 +259,8 @@
 				F7A8B33C21043AF3008C019A /* AppDelegate.swift in Sources */,
 				F7A8B35B21053BFE008C019A /* ProvinceCell.swift in Sources */,
 				F7A8B3562104ECA1008C019A /* OrderDataModel.swift in Sources */,
+				F7D565D7210593400081E50D /* YearViewController.swift in Sources */,
+				F7D565D521058AB80081E50D /* OrderDataByYear.swift in Sources */,
 				F7A8B33E21043AF3008C019A /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,6 +19,31 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var orderNum17: UILabel!
     @IBOutlet weak var orderNum16: UILabel!
     
+    @IBAction func readMore2017(_ sender: Any) {
+        print("go to 2017")
+        performSegue(withIdentifier: "gotoDetail17", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoDetail17" {
+            let destinationVC = segue.destination as! YearViewController
+            
+            destinationVC.yearTextPassed = "2017"
+        }
+        
+        if segue.identifier == "gotoDetail16" {
+            let destinationVC = segue.destination as! YearViewController
+            
+            destinationVC.yearTextPassed = "2016"
+        }
+    }
+    
+    @IBAction func readMore2016(_ sender: Any) {
+        print("go to 2016")
+        performSegue(withIdentifier: "gotoDetail16", sender: self)
+    }
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loaded second view of tab view")
@@ -46,7 +71,7 @@ class SecondViewController: UIViewController {
                     
                 } else {
                     print("Error: \(String(describing: response.result.error))")
-                    //self.bitcoinPriceLabel.text = "Connection Issues"
+                    
                 }
         }
         
@@ -77,6 +102,7 @@ class SecondViewController: UIViewController {
         }
         
         //print(orderDataModel.createdYear)
+        
         orderDataModel.orderAmount16 = orderDataModel.processYearData(input: orderDataModel.createdYear)[0]
         
         orderDataModel.orderAmount17 = orderDataModel.processYearData(input: orderDataModel.createdYear)[1]
@@ -87,7 +113,6 @@ class SecondViewController: UIViewController {
     
     
     func updateYearUI() {
-        
         orderNum17.text = String(orderDataModel.orderAmount17)
         orderNum16.text = String(orderDataModel.orderAmount16)
     }
